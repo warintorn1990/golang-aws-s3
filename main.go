@@ -1,9 +1,3 @@
-/*
-   This is a simple code example for connecting, uploading, downloading and listing files
-   from an AWS S3 Bucket.
-   Author: Antonio Sanchez antonio@asanchez.dev
-*/
-
 package main
 
 import (

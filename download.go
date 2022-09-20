@@ -1,6 +1,3 @@
-/*
-   Download an item from an AWS S3 Bucket
-*/
 package main
 
 import (
