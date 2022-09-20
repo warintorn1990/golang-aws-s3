@@ -4,5 +4,5 @@ golang-aws-s3
 
 ## Run Project
 ```
-go run main.go
+go run *.go 
 ```
