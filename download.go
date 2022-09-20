@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 	"strings"
@@ -13,7 +14,13 @@ import (
 func handlerDownload(w http.ResponseWriter, r *http.Request) {
 
 	// We get the name of the file on the URL
+
+	// fmt.Println(r.URL.Path)
 	filename := strings.Replace(r.URL.Path, "/get/", "", 1)
+
+	fmt.Println(filename)
+	fmt.Println(AWS_S3_BUCKET)
+	fmt.Println(filename)
 
 	f, err := os.Create(filename)
 	if err != nil {
@@ -22,10 +29,11 @@ func handlerDownload(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Write the contents of S3 Object to the file
+
 	downloader := s3manager.NewDownloader(sess)
 	_, err = downloader.Download(f, &s3.GetObjectInput{
 		Bucket: aws.String(AWS_S3_BUCKET),
-		Key:    aws.String(filename),
+		Key:    aws.String("yo-test-optimize/input.optimize.json"),
 	})
 	if err != nil {
 		showError(w, r, http.StatusBadRequest, "Something went wrong retrieving the file from S3")
